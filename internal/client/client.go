@@ -116,12 +116,12 @@ func (c *Client) ListApiKeys(ctx context.Context, params *ListApiKeysRequest) ([
 	return resp.Data, nil
 }
 
-func (c *Client) CreateApiKey(ctx context.Context, req *CreateApiKeyRequest) (*ApiKeyInfo, error) {
+func (c *Client) CreateApiKey(ctx context.Context, req *CreateApiKeyRequest) (*CreateApiKeyResponse, error) {
 	var resp CreateApiKeyResponse
 	if err := c.doRequest(ctx, "POST", "/keys", req, &resp); err != nil {
 		return nil, err
 	}
-	return &resp.Data, nil
+	return &resp, nil
 }
 
 func (c *Client) GetApiKey(ctx context.Context, hash string) (*ApiKeyInfo, error) {

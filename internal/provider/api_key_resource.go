@@ -142,13 +142,13 @@ func (r *ApiKeyResource) Create(ctx context.Context, req resource.CreateRequest,
 		return
 	}
 
-	data.ID = types.StringValue(apiKey.ID)
+	data.ID = types.StringValue(apiKey.Data.ID)
 	data.Key = types.StringValue(apiKey.Key)
-	data.Usage = types.Float64Value(apiKey.Usage)
-	data.IsDisabled = types.BoolValue(apiKey.IsDisabled)
+	data.Usage = types.Float64Value(apiKey.Data.Usage)
+	data.IsDisabled = types.BoolValue(apiKey.Data.IsDisabled)
 	
-	if apiKey.CreatedAt != nil {
-		data.CreatedAt = types.StringValue(apiKey.CreatedAt.Format("2006-01-02T15:04:05Z"))
+	if apiKey.Data.CreatedAt != nil {
+		data.CreatedAt = types.StringValue(apiKey.Data.CreatedAt.Format("2006-01-02T15:04:05Z"))
 	}
 
 	tflog.Trace(ctx, "created API key")

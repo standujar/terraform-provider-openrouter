@@ -3,15 +3,17 @@ package client
 import "time"
 
 type ApiKeyInfo struct {
-	ID            string     `json:"id"`
+	ID            string     `json:"hash"`
 	Key           string     `json:"key,omitempty"`
+	Label         string     `json:"label,omitempty"`
 	Name          string     `json:"name"`
-	IsProvisioner bool       `json:"is_provisioner"`
+	IsProvisioner bool       `json:"is_provisioner,omitempty"`
 	CreatedAt     *time.Time `json:"created_at"`
+	UpdatedAt     *time.Time `json:"updated_at"`
 	Limit         *float64   `json:"limit,omitempty"`
 	LimitMinutes  *int       `json:"limit_minutes,omitempty"`
 	Usage         float64    `json:"usage"`
-	IsDisabled    bool       `json:"is_disabled"`
+	IsDisabled    bool       `json:"disabled"`
 }
 
 type ListApiKeysRequest struct {
@@ -32,6 +34,7 @@ type CreateApiKeyRequest struct {
 
 type CreateApiKeyResponse struct {
 	Data ApiKeyInfo `json:"data"`
+	Key  string     `json:"key"`
 }
 
 type GetApiKeyResponse struct {
@@ -39,9 +42,9 @@ type GetApiKeyResponse struct {
 }
 
 type UpdateApiKeyRequest struct {
-	Name       *string  `json:"name,omitempty"`
-	Limit      *float64 `json:"limit,omitempty"`
-	IsDisabled *bool    `json:"is_disabled,omitempty"`
+	Name       *string     `json:"name,omitempty"`
+	Limit      *float64    `json:"limit,omitempty"`
+	IsDisabled *bool       `json:"disabled,omitempty"`
 	BYOK       *BYOKConfig `json:"byok,omitempty"`
 }
 
